@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+
+<body>
+    <h2>Procuto</h2>
+    <form action="/api/productos" method="POST">
+        <div><label for="title">Titulo: </label><input name="title"></div>
+        <div><label for="price">Precio: </label><input name="price"></div>
+        <div><label for="url">URL: </label><input name="thumbnail"></div>
+        <div><input type="submit"></div>
+    </form>
+    <h2>Modificar Producto según su ID</h2>
+    <form action="/api/productos" method="PUT">
+        <div><label for="id">Id: </label><input name="id"></div>
+        <div><label for="title">Titulo: </label><input name="title"></div>
+        <div><label for="price">Precio: </label><input name="price"></div>
+        <div><label for="url">URL: </label><input name="thumbnail"></div>
+        <div><input type="submit"></div>
+    </form>
+    <h2>Eliminar un producto segun su ID</h2>
+    <form action="/api/productos" method="DELETE">
+        <div><label for="id">Id: </label><input name="id"></div>
+        <div><input type="submit"></div>
+    </form>
+</body>
+
+</html>
