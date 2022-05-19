@@ -59,7 +59,7 @@ class Contenedor {
       const arrayData = await this.getAll();
       //indexOf - findIndex()
       const index = arrayData.findIndex((e) => e.id == num);
-      arrayData.splice(index, 1);
+      index && arrayData.splice(index, 1);
       fs.promises.writeFile("productos.txt", JSON.stringify(arrayData));
     } catch (e) {
       console.error("Dio error-fn deleteById", e);

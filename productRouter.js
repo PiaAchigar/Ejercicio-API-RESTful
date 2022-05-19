@@ -1,4 +1,5 @@
-const { Router } = require("express");
+const express = require("express");
+const { Router } = express;
 const Contenedor = require("./files");
 const cont = new Contenedor();
 
@@ -20,8 +21,7 @@ productosRouter.get("/api/productos", async (req, res) => {
 productosRouter.get("/api/productos/:id", async (req, res) => {
   try {
     const obj = await cont.getById(req.params.id);
-    obj ? res.json({ error: "Producto no encontrado" }) : res.json(obj);
-    res.json(obj);
+    obj ? res.json(obj) : res.json({ error: "Producto no encontrado" });
   } catch (e) {
     console.log("Error en getById: ", e);
   }
@@ -30,7 +30,7 @@ productosRouter.get("/api/productos/:id", async (req, res) => {
 productosRouter.post("/api/productos", async (req, res) => {
   try {
     const producto = req.body;
-    const newId = cont.save(producto);
+    const newId = await cont.save(producto);
     //res.json(newId);
     return res.status(201).json(newId);
   } catch (e) {
@@ -43,7 +43,7 @@ productosRouter.post("/api/productos", async (req, res) => {
 
 productosRouter.put("/api/productos/:id", async (req, res) => {
   try {
-    let obj = await cont.getById(req.param.id);
+    let obj = await cont.getById(req.params.id);
     if (obj) {
       obj.title = req.body.title;
       obj.price = req.body.price;
@@ -60,7 +60,8 @@ productosRouter.put("/api/productos/:id", async (req, res) => {
 
 productosRouter.delete("/api/productos/:id", async (req, res) => {
   try {
-    const producto = await cont.deleteById(req.param.id);
+    const producto = await cont.deleteById(req.params.id);
+    console.log({ producto });
     producto
       ? res.send({ Productos: productosDelete })
       : res.send({ error: "Producto no encontrado" });
