@@ -14,5 +14,4 @@ server.on("error", (error) => console.log(` Se produjo un error ${error}`));
 app.use("/", express.static(__dirname + "/public"));
 
 // me traigo la ruta
-app.use("/api/productos", productosRouter);
-app.use("/api/productos/:id", productosRouter);
+app.use("/", productosRouter);
