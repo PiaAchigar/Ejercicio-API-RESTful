@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const productosRouter = require("./productRouter");
 app.use(express.json());
-app.use(express.urlencoded({ express: true }));
+app.use(express.urlencoded({ extended: true }));
 
 const PORT = 8080;
 const server = app.listen(PORT, () => {
